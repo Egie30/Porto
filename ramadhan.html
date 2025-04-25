@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Digital Ramadan & Idul Fitri</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            background-image: url('https://source.unsplash.com/1600x900/?ramadan,mosque');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: auto;
+            color: #333;
+        }
+        .header {
+            color: #d4af37;
+            font-size: 26px;
+            font-weight: bold;
+        }
+        .content {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        .btn {
+            display: inline-block;
+            background: #d4af37;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #b89b2e;
+        }
+        .moon {
+            font-size: 50px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="moon">🌙</div>
+        <h2 class="header">Selamat Menunaikan Ibadah Ramadan</h2>
+        <p class="content">Kami mengundang Anda untuk berbagi kebersamaan dalam acara buka puasa bersama.</p>
+        <p class="content"><strong>Hari/Tanggal:</strong> Sabtu, 30 Maret 2025</p>
+        <p class="content"><strong>Waktu:</strong> 17:30 WIB - Selesai</p>
+        <p class="content"><strong>Lokasi:</strong> Restoran Al-Barokah, Yogyakarta</p>
+        
+        <!-- Form Konfirmasi Kehadiran -->
+        <form id="konfirmasi-form">
+            <input type="text" id="nama" placeholder="Masukkan Nama Anda" required>
+            <button type="submit" class="btn">Konfirmasi Kehadiran</button>
+        </form>
+        
+        <p class="footer">Semoga Ramadan ini membawa berkah dan kebahagiaan untuk kita semua.</p>
+    </div>
+    
+    <script>
+        document.getElementById("konfirmasi-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var nama = document.getElementById("nama").value;
+            
+            fetch("https://script.google.com/macros/s/AKfycbzWznHw5kOm9rOc93eaW8tLIK7LsjLWfhzn81N0WuUhK-ItA38FIA6g2l1amDOsMsGc9A/exec", {
+                method: "POST",
+                body: JSON.stringify({ nama: nama, kehadiran: "Hadir" }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Konfirmasi berhasil!");
+                document.getElementById("konfirmasi-form").reset();
+            })
+            .catch(error => alert("Terjadi kesalahan, coba lagi."));
+        });
+    </script>
+</body>
+</html>
